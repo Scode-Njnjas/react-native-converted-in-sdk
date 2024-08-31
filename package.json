@@ -2,19 +2,15 @@
   "name": "react-native-converted-in-sdk",
   "version": "0.1.0",
   "description": "Converted In SDK for React Native",
-  "source": "./src/index.tsx",
-  "main": "./lib/commonjs/index.js",
-  "module": "./lib/module/index.js",
+  "source": "src/index.ts",
+  "main": "lib/commonjs/index.js",
+  "module": "lib/module/index.js",
+  "types": "lib/typescript/commonjs/index.d.ts",
   "exports": {
     ".": {
-      "import": {
-        "types": "./lib/typescript/module/src/index.d.ts",
-        "default": "./lib/module/index.js"
-      },
-      "require": {
-        "types": "./lib/typescript/commonjs/src/index.d.ts",
-        "default": "./lib/commonjs/index.js"
-      }
+      "types": "./lib/typescript/commonjs/index.d.ts",
+      "import": "./lib/module/index.js",
+      "require": "./lib/commonjs/index.js"
     }
   },
   "files": [
@@ -41,6 +37,7 @@
     "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
+    "clean:node_modules": "del-cli node_modules example/node_modules",
     "prepare": "bob build",
     "release": "release-it"
   },
@@ -92,6 +89,10 @@
   },
   "workspaces": [
     "example"
+  ],
+  "nohoist": [
+    "**/react-native",
+    "**/react-native/**"
   ],
   "packageManager": "yarn@3.6.1",
   "jest": {

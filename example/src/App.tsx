@@ -1,18 +1,63 @@
-import { useState, useEffect } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-converted-in-sdk';
+import { useEffect, useState } from 'react';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import {
+  RNConvertInSDKProvider,
+  useConvertedIn,
+} from 'react-native-converted-in-sdk';
+import AddToCart from './components/add-to-cart';
+import CustomEventOpenApp from './components/custom-event-open-app';
+import IdentifyUser from './components/identify-user';
+import ViewContent from './components/view-content';
 
-export default function App() {
-  const [result, setResult] = useState<number | undefined>();
+const AppContent = () => {
+  const [isInitialized, setIsInitialized] = useState(false);
+  const { initializeSDK } = useConvertedIn();
 
   useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
+    let isMounted = true;
+
+    const initialize = async () => {
+      if (!isInitialized) {
+        try {
+          await initializeSDK();
+          if (isMounted) {
+            setIsInitialized(true);
+          }
+        } catch (error) {
+          console.error('Failed to initialize SDK:', error);
+        }
+      }
+    };
+
+    initialize();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [initializeSDK, isInitialized]);
+
+  if (!isInitialized) {
+    return <ActivityIndicator size="large" />;
+  }
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <IdentifyUser />
+      <ViewContent />
+      <AddToCart />
+      <CustomEventOpenApp />
     </View>
+  );
+};
+
+export default function App() {
+  return (
+    <RNConvertInSDKProvider
+      pixelId="6QbJeyFtVXHym36o839rSb3Dn0HePs"
+      storeUrl="https://www.scodenjnja.store"
+    >
+      <AppContent />
+    </RNConvertInSDKProvider>
   );
 }
 
@@ -21,10 +66,5 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
   },
 });

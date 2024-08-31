@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "rootDir": ".",
+    "baseUrl": ".",
     "paths": {
       "react-native-converted-in-sdk": ["./src/index"]
     },
