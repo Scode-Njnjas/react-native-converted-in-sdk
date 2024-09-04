@@ -10,56 +10,68 @@ interface Product {
 
 let isInitialized = false;
 
-interface InitializeSDKParams {
+export const __test__ = {
+  resetInitialization: () => {
+    isInitialized = false;
+  },
+};
+
+interface SDKConfig {
   pixelId: string;
   storeUrl: string;
 }
 
-export const initializeSDK = async ({
-  pixelId,
-  storeUrl,
-}: InitializeSDKParams): Promise<void> => {
-  try {
-    await ConvertedInSDKModule.initializeSDK({ pixelId, storeUrl });
-    isInitialized = true;
-    console.log('SDK Initialized Successfully');
-  } catch (error: any) {
-    console.error('Failed to initialize SDK:', error);
-    throw error;
+export async function initializeSDK(config: SDKConfig): Promise<void> {
+  if (isInitialized) {
+    console.log('SDK already initialized');
+    return;
   }
-};
+  await NativeModules.ConvertedInSDKModule.initializeSDK(config);
+  console.log('SDK Initialized Successfully');
+  isInitialized = true;
+}
 
-const checkInitialization = () => {
+export function identifyUser(
+  email: string,
+  countryCode: string,
+  phoneNumber: string
+): void {
   if (!isInitialized) {
     throw new Error('SDK must be initialized before calling this method.');
   }
-};
+  NativeModules.ConvertedInSDKModule.identifyUser(
+    email,
+    countryCode,
+    phoneNumber
+  );
+}
 
-export const identifyUser = (
-  email: string,
-  countryCode: string,
-  phone: string
-) => {
-  checkInitialization();
-  ConvertedInSDKModule.identifyUser(email, countryCode, phone);
-};
-
-export const addEvent = (
-  name: string,
+// Apply similar checks to other methods
+export function addEvent(
+  eventName: string,
   currency: string,
-  total: number,
+  value: number,
   products: Product[]
-) => {
-  checkInitialization();
-  ConvertedInSDKModule.addEvent(name, currency, total, products);
-};
+): void {
+  if (!isInitialized) {
+    throw new Error('SDK must be initialized before calling this method.');
+  }
+  NativeModules.ConvertedInSDKModule.addEvent(
+    eventName,
+    currency,
+    value,
+    products
+  );
+}
 
 export const viewContentEvent = (
   currency: string,
   total: number,
   products: Product[]
 ) => {
-  checkInitialization();
+  if (!isInitialized) {
+    throw new Error('SDK must be initialized before calling this method.');
+  }
   ConvertedInSDKModule.viewContentEvent(currency, total, products);
 };
 
@@ -68,7 +80,9 @@ export const addToCartEvent = (
   total: number,
   products: Product[]
 ) => {
-  checkInitialization();
+  if (!isInitialized) {
+    throw new Error('SDK must be initialized before calling this method.');
+  }
   ConvertedInSDKModule.addToCartEvent(currency, total, products);
 };
 
@@ -77,7 +91,9 @@ export const initiateCheckoutEvent = (
   total: number,
   products: Product[]
 ) => {
-  checkInitialization();
+  if (!isInitialized) {
+    throw new Error('SDK must be initialized before calling this method.');
+  }
   ConvertedInSDKModule.initiateCheckoutEvent(currency, total, products);
 };
 
@@ -86,11 +102,15 @@ export const purchaseEvent = (
   total: number,
   products: Product[]
 ) => {
-  checkInitialization();
+  if (!isInitialized) {
+    throw new Error('SDK must be initialized before calling this method.');
+  }
   ConvertedInSDKModule.purchaseEvent(currency, total, products);
 };
 
 export const registerEvent = () => {
-  checkInitialization();
+  if (!isInitialized) {
+    throw new Error('SDK must be initialized before calling this method.');
+  }
   ConvertedInSDKModule.registerEvent();
 };

@@ -1,4 +1,4 @@
-import React, { createContext, useEffect } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
 import {
   initializeSDK,
@@ -18,6 +18,7 @@ interface RNConvertInSDKProps {
 }
 
 interface RNConvertInSDKType {
+  isInitialized: boolean;
   initializeSDK: () => Promise<void>;
   identifyUser: (email: string, countryCode: string, phone: string) => void;
   addEvent: (
@@ -46,6 +47,8 @@ export const RNConvertInSDKProvider: React.FC<RNConvertInSDKProps> = ({
   pixelId,
   storeUrl,
 }) => {
+  const [isInitialized, setIsInitialized] = useState(false);
+
   if (!pixelId || !storeUrl) {
     throw new Error(
       'Both pixelId and storeUrl must be provided to initialize the SDK'
@@ -53,7 +56,13 @@ export const RNConvertInSDKProvider: React.FC<RNConvertInSDKProps> = ({
   }
 
   const sdkFunctions = {
-    initializeSDK: () => initializeSDK({ pixelId, storeUrl }),
+    isInitialized,
+    initializeSDK: async () => {
+      if (!isInitialized) {
+        await initializeSDK({ pixelId, storeUrl });
+        setIsInitialized(true);
+      }
+    },
     identifyUser,
     addEvent,
     viewContentEvent,
@@ -63,7 +72,6 @@ export const RNConvertInSDKProvider: React.FC<RNConvertInSDKProps> = ({
     registerEvent,
   };
 
-  // Effect to initialize SDK on mount
   useEffect(() => {
     sdkFunctions.initializeSDK();
     // eslint-disable-next-line react-hooks/exhaustive-deps
