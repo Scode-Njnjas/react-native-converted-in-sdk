@@ -21,6 +21,12 @@ interface SDKConfig {
   storeUrl: string;
 }
 
+const checkInitialization = () => {
+  if (!isInitialized) {
+    throw new Error('SDK must be initialized before calling this method.');
+  }
+};
+
 export async function initializeSDK(config: SDKConfig): Promise<void> {
   if (isInitialized) {
     console.log('SDK already initialized');
@@ -36,9 +42,7 @@ export function identifyUser(
   countryCode: string,
   phoneNumber: string
 ): void {
-  if (!isInitialized) {
-    throw new Error('SDK must be initialized before calling this method.');
-  }
+  checkInitialization();
   NativeModules.ConvertedInSDKModule.identifyUser(
     email,
     countryCode,
@@ -46,20 +50,17 @@ export function identifyUser(
   );
 }
 
-// Apply similar checks to other methods
 export function addEvent(
   eventName: string,
   currency: string,
-  value: number,
+  total: number,
   products: Product[]
 ): void {
-  if (!isInitialized) {
-    throw new Error('SDK must be initialized before calling this method.');
-  }
+  checkInitialization();
   NativeModules.ConvertedInSDKModule.addEvent(
     eventName,
     currency,
-    value,
+    total,
     products
   );
 }
@@ -69,9 +70,7 @@ export const viewContentEvent = (
   total: number,
   products: Product[]
 ) => {
-  if (!isInitialized) {
-    throw new Error('SDK must be initialized before calling this method.');
-  }
+  checkInitialization();
   ConvertedInSDKModule.viewContentEvent(currency, total, products);
 };
 
@@ -80,9 +79,7 @@ export const addToCartEvent = (
   total: number,
   products: Product[]
 ) => {
-  if (!isInitialized) {
-    throw new Error('SDK must be initialized before calling this method.');
-  }
+  checkInitialization();
   ConvertedInSDKModule.addToCartEvent(currency, total, products);
 };
 
@@ -91,9 +88,7 @@ export const initiateCheckoutEvent = (
   total: number,
   products: Product[]
 ) => {
-  if (!isInitialized) {
-    throw new Error('SDK must be initialized before calling this method.');
-  }
+  checkInitialization();
   ConvertedInSDKModule.initiateCheckoutEvent(currency, total, products);
 };
 
@@ -102,15 +97,11 @@ export const purchaseEvent = (
   total: number,
   products: Product[]
 ) => {
-  if (!isInitialized) {
-    throw new Error('SDK must be initialized before calling this method.');
-  }
+  checkInitialization();
   ConvertedInSDKModule.purchaseEvent(currency, total, products);
 };
 
 export const registerEvent = () => {
-  if (!isInitialized) {
-    throw new Error('SDK must be initialized before calling this method.');
-  }
+  checkInitialization();
   ConvertedInSDKModule.registerEvent();
 };
