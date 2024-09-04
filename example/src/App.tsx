@@ -7,7 +7,10 @@ import {
 import AddToCart from './components/add-to-cart';
 import CustomEventOpenApp from './components/custom-event-open-app';
 import IdentifyUser from './components/identify-user';
+import InitiateCheckoutEvent from './components/initiate-checkout';
+import PurchaseEvent from './components/purchase';
 import ViewContent from './components/view-content';
+import Register from './components/register';
 
 const AppContent = () => {
   const [isInitialized, setIsInitialized] = useState(false);
@@ -42,10 +45,13 @@ const AppContent = () => {
 
   return (
     <View style={styles.container}>
+      <Register />
       <IdentifyUser />
       <ViewContent />
       <AddToCart />
       <CustomEventOpenApp />
+      <InitiateCheckoutEvent />
+      <PurchaseEvent />
     </View>
   );
 };

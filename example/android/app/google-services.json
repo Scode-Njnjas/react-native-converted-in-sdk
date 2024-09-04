@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "672172846029",
+    "project_id": "react-native-converted-in-sdk",
+    "storage_bucket": "react-native-converted-in-sdk.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:672172846029:android:8f945800ddb4baccb93284",
+        "android_client_info": {
+          "package_name": "convertedinsdk.example"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmTCm9yx2zGzbYcWx-xtyXBuhQqWhfrZ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
