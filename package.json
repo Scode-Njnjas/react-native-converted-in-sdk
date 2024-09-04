@@ -5,10 +5,9 @@
   "source": "src/index.ts",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
-  "types": "lib/typescript/commonjs/index.d.ts",
+  "types": "lib/typescript/module/index.d.ts",
   "exports": {
     ".": {
-      "types": "./lib/typescript/commonjs/index.d.ts",
       "import": "./lib/module/index.js",
       "require": "./lib/commonjs/index.js"
     }
