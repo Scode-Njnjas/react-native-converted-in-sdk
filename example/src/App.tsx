@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import {
   RNConvertInSDKProvider,
@@ -9,35 +8,11 @@ import CustomEventOpenApp from './components/custom-event-open-app';
 import IdentifyUser from './components/identify-user';
 import InitiateCheckoutEvent from './components/initiate-checkout';
 import PurchaseEvent from './components/purchase';
-import ViewContent from './components/view-content';
 import Register from './components/register';
+import ViewContent from './components/view-content';
 
-const AppContent = () => {
-  const [isInitialized, setIsInitialized] = useState(false);
-  const { initializeSDK } = useConvertedIn();
-
-  useEffect(() => {
-    let isMounted = true;
-
-    const initialize = async () => {
-      if (!isInitialized) {
-        try {
-          await initializeSDK();
-          if (isMounted) {
-            setIsInitialized(true);
-          }
-        } catch (error) {
-          console.error('Failed to initialize SDK:', error);
-        }
-      }
-    };
-
-    initialize();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [initializeSDK, isInitialized]);
+const AppContent: React.FC = () => {
+  const { isInitialized } = useConvertedIn();
 
   if (!isInitialized) {
     return <ActivityIndicator size="large" />;

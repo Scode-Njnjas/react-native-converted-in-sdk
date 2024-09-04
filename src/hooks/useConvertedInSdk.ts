@@ -9,6 +9,7 @@ export const useConvertedIn = () => {
   }
 
   return {
+    isInitialized: context.isInitialized,
     initializeSDK: context.initializeSDK,
     identifyUser: context.identifyUser,
     addEvent: context.addEvent,

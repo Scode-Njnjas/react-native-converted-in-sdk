@@ -10,24 +10,16 @@ interface Product {
 
 let isInitialized = false;
 
-interface InitializeSDKParams {
+export const __test__ = {
+  resetInitialization: () => {
+    isInitialized = false;
+  },
+};
+
+interface SDKConfig {
   pixelId: string;
   storeUrl: string;
 }
-
-export const initializeSDK = async ({
-  pixelId,
-  storeUrl,
-}: InitializeSDKParams): Promise<void> => {
-  try {
-    await ConvertedInSDKModule.initializeSDK({ pixelId, storeUrl });
-    isInitialized = true;
-    console.log('SDK Initialized Successfully');
-  } catch (error: any) {
-    console.error('Failed to initialize SDK:', error);
-    throw error;
-  }
-};
 
 const checkInitialization = () => {
   if (!isInitialized) {
@@ -35,24 +27,43 @@ const checkInitialization = () => {
   }
 };
 
-export const identifyUser = (
+export async function initializeSDK(config: SDKConfig): Promise<void> {
+  if (isInitialized) {
+    console.log('SDK already initialized');
+    return;
+  }
+  await NativeModules.ConvertedInSDKModule.initializeSDK(config);
+  console.log('SDK Initialized Successfully');
+  isInitialized = true;
+}
+
+export function identifyUser(
   email: string,
   countryCode: string,
-  phone: string
-) => {
+  phoneNumber: string
+): void {
   checkInitialization();
-  ConvertedInSDKModule.identifyUser(email, countryCode, phone);
-};
+  NativeModules.ConvertedInSDKModule.identifyUser(
+    email,
+    countryCode,
+    phoneNumber
+  );
+}
 
-export const addEvent = (
-  name: string,
+export function addEvent(
+  eventName: string,
   currency: string,
   total: number,
   products: Product[]
-) => {
+): void {
   checkInitialization();
-  ConvertedInSDKModule.addEvent(name, currency, total, products);
-};
+  NativeModules.ConvertedInSDKModule.addEvent(
+    eventName,
+    currency,
+    total,
+    products
+  );
+}
 
 export const viewContentEvent = (
   currency: string,
