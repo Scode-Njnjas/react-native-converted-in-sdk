@@ -63,16 +63,17 @@ const AppContent = () => {
 
 Returns an object with the following methods:
 
-| Method | Parameters | Return Type |
-|--------|------------|-------------|
-| `initializeSDK` | None | `Promise<void>` |
-| `identifyUser` | `email: string, countryCode: string, phone: string` | `void` |
-| `addEvent` | `name: string, currency: string, total: number, products: Product[]` | `void` |
-| `viewContentEvent` | `currency: string, total: number, products: Product[]` | `void` |
-| `addToCartEvent` | `currency: string, total: number, products: Product[]` | `void` |
-| `initiateCheckoutEvent` | `currency: string, total: number, products: Product[]` | `void` |
-| `purchaseEvent` | `currency: string, total: number, products: Product[]` | `void` |
-| `registerEvent` | None | `void` |
+| Method | Parameters | Return Type | Description |
+|--------|------------|-------------|-------------|
+| `isInitialized` | None | `boolean` | Returns whether the SDK has been initialized |
+| `initializeSDK` | None | `Promise<void>` | Initializes the SDK with the provided pixel ID and store URL. This should be called as early as possible in your app's lifecycle. |
+| `identifyUser` | `email: string, countryCode: string, phone: string` | `void` | Identifies a user with their email, country code, and phone number. This helps in tracking user-specific events and improving personalization. |
+| `addEvent` | `name: string, currency: string, total: number, products: Product[]` | `void` | Adds a custom event with the specified name, currency, total, and products. This allows tracking of specific actions or milestones in your app. |
+| `viewContentEvent` | `currency: string, total: number, products: Product[]` | `void` | Tracks a view content event when a user views a product or content page. Includes details like currency, total value, and viewed products. |
+| `addToCartEvent` | `currency: string, total: number, products: Product[]` | `void` | Tracks an add to cart event when a user adds items to their shopping cart. Includes details about the added products, total value, and currency. |
+| `initiateCheckoutEvent` | `currency: string, total: number, products: Product[]` | `void` | Tracks the initiation of the checkout process. This event should be called when a user starts the purchasing process. |
+| `purchaseEvent` | `currency: string, total: number, products: Product[]` | `void` | Tracks a completed purchase event. This should be called when a user successfully completes a transaction, including details of purchased products. |
+| `registerEvent` | None | `void` | Tracks a user registration event. This should be called when a new user creates an account in your app. |
 
 ### `Product` Interface
 
