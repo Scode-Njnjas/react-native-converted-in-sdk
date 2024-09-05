@@ -87,6 +87,9 @@ Returns an object with the following methods:
 
 Check the `example` folder for a complete implementation example.
 
+> [!NOTE]
+> If you encounter an error while installing pods in `example/ios`, please refer to this solution: [https://stackoverflow.com/a/78874710/12355129](https://stackoverflow.com/a/78874710/12355129)
+
 ## Development
 
 To develop the SDK locally:
@@ -110,7 +113,7 @@ To develop the SDK locally:
    - iOS:
 
      ```bash
-     cd example/ios && pod install && cd ..
+     cd example/ios && pod install && cd ../..
      yarn example ios
      ```
 
