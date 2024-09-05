@@ -1,6 +1,6 @@
 // @ts-ignore
 import * as React from 'react';
-import { renderHook } from '@testing-library/react-hooks/native';
+import { act, renderHook } from '@testing-library/react-hooks/native';
 import { RNConvertInSDKProvider } from '../context/RNConvertedInSdkProvider';
 import { useConvertedIn } from '../hooks/useConvertedInSdk';
 
@@ -16,14 +16,25 @@ jest.mock('../../src/RNConvertedInSdkModule', () => ({
 }));
 
 describe('useConvertedIn', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('should throw an error when used outside of RNConvertInSDKProvider', () => {
+    const consoleErrorSpy = jest
+      .spyOn(console, 'error')
+      .mockImplementation(() => {});
+
     const { result } = renderHook(() => useConvertedIn());
+
     expect(result.error).toEqual(
       Error('useConvertedIn must be used within a ConvertedInProvider')
     );
+
+    consoleErrorSpy.mockRestore();
   });
 
-  it('should return all SDK functions when used within RNConvertInSDKProvider', () => {
+  it('should return all SDK functions when used within RNConvertInSDKProvider', async () => {
     const wrapper = ({ children }: { children: React.ReactNode }) => (
       <RNConvertInSDKProvider
         pixelId="test-pixel-id"
@@ -34,6 +45,10 @@ describe('useConvertedIn', () => {
     );
 
     const { result } = renderHook(() => useConvertedIn(), { wrapper });
+
+    await act(async () => {
+      await result.current.initializeSDK();
+    });
 
     expect(result.current).toHaveProperty('initializeSDK');
     expect(result.current).toHaveProperty('identifyUser');

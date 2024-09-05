@@ -17,7 +17,7 @@ interface RNConvertInSDKProps {
   storeUrl: string;
 }
 
-interface RNConvertInSDKType {
+export interface RNConvertInSDKContextType {
   isInitialized: boolean;
   initializeSDK: () => Promise<void>;
   identifyUser: (email: string, countryCode: string, phone: string) => void;
@@ -38,9 +38,9 @@ interface RNConvertInSDKType {
   registerEvent: () => void;
 }
 
-export const RNConvertInSDK = createContext<RNConvertInSDKType | undefined>(
-  undefined
-);
+export const RNConvertInSDK = createContext<
+  RNConvertInSDKContextType | undefined
+>(undefined);
 
 export const RNConvertInSDKProvider: React.FC<RNConvertInSDKProps> = ({
   children,
