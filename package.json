@@ -1,11 +1,11 @@
 {
   "name": "react-native-converted-in-sdk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Converted In SDK for React Native",
   "source": "src/index.ts",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
-  "types": "lib/typescript/module/index.d.ts",
+  "types": "src/index.d.ts",
   "exports": {
     ".": {
       "import": "./lib/module/index.js",

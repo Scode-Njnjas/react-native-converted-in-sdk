@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import Button from './button';
-import { useConvertedIn } from 'react-native-converted-in-sdk';
+import { useConvertedInSdk } from 'react-native-converted-in-sdk';
 
 const ViewContent: React.FC = () => {
-  const { viewContentEvent } = useConvertedIn();
+  const { viewContentEvent } = useConvertedInSdk();
 
   const handleViewContent = () => {
     const currency = 'USD';

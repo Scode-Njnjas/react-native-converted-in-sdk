@@ -1,7 +1,7 @@
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import {
   RNConvertInSDKProvider,
-  useConvertedIn,
+  useConvertedInSdk,
 } from 'react-native-converted-in-sdk';
 import AddToCart from './components/add-to-cart';
 import CustomEventOpenApp from './components/custom-event-open-app';
@@ -12,7 +12,7 @@ import Register from './components/register';
 import ViewContent from './components/view-content';
 
 const AppContent: React.FC = () => {
-  const { isInitialized } = useConvertedIn();
+  const { isInitialized } = useConvertedInSdk();
 
   if (!isInitialized) {
     return <ActivityIndicator size="large" />;

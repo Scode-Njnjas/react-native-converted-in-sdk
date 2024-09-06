@@ -16,7 +16,7 @@ export const __test__ = {
   },
 };
 
-interface SDKConfig {
+interface InitSDKOptions {
   pixelId: string;
   storeUrl: string;
 }
@@ -27,7 +27,7 @@ const checkInitialization = () => {
   }
 };
 
-export async function initializeSDK(config: SDKConfig): Promise<void> {
+export async function initializeSDK(config: InitSDKOptions): Promise<void> {
   if (isInitialized) {
     console.log('SDK already initialized');
     return;

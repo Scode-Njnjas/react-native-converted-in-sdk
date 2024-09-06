@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { act, renderHook } from '@testing-library/react-hooks/native';
 import { RNConvertInSDKProvider } from '../context/RNConvertedInSdkProvider';
-import { useConvertedIn } from '../hooks/useConvertedInSdk';
+import { useConvertedInSdk } from '../hooks/useConvertedInSdk';
 
 jest.mock('../../src/RNConvertedInSdkModule', () => ({
   initializeSDK: jest.fn(),
@@ -15,7 +15,7 @@ jest.mock('../../src/RNConvertedInSdkModule', () => ({
   registerEvent: jest.fn(),
 }));
 
-describe('useConvertedIn', () => {
+describe('useConvertedInSdk', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -25,10 +25,10 @@ describe('useConvertedIn', () => {
       .spyOn(console, 'error')
       .mockImplementation(() => {});
 
-    const { result } = renderHook(() => useConvertedIn());
+    const { result } = renderHook(() => useConvertedInSdk());
 
     expect(result.error).toEqual(
-      Error('useConvertedIn must be used within a ConvertedInProvider')
+      Error('useConvertedInSdk must be used within a ConvertedInProvider')
     );
 
     consoleErrorSpy.mockRestore();
@@ -44,7 +44,7 @@ describe('useConvertedIn', () => {
       </RNConvertInSDKProvider>
     );
 
-    const { result } = renderHook(() => useConvertedIn(), { wrapper });
+    const { result } = renderHook(() => useConvertedInSdk(), { wrapper });
 
     await act(async () => {
       await result.current.initializeSDK();

@@ -1,11 +1,13 @@
 import { useContext } from 'react';
 import { RNConvertInSDK } from '../context/RNConvertedInSdkProvider';
 
-export const useConvertedIn = () => {
+export const useConvertedInSdk = () => {
   const context = useContext(RNConvertInSDK);
 
   if (!context) {
-    throw new Error('useConvertedIn must be used within a ConvertedInProvider');
+    throw new Error(
+      'useConvertedInSdk must be used within a ConvertedInProvider'
+    );
   }
 
   return {
