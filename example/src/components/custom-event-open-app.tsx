@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
 import Button from './button';
-import { useConvertedIn } from 'react-native-converted-in-sdk';
+import { useConvertedInSdk } from 'react-native-converted-in-sdk';
 
 const CustomEventOpenApp: React.FC = () => {
-  const { addEvent } = useConvertedIn();
+  const { addEvent } = useConvertedInSdk();
 
   const handleAppOpened = useCallback(() => {
     const eventName = 'app_opened';

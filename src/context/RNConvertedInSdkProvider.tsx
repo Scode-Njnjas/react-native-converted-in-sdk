@@ -1,14 +1,14 @@
-import React, { createContext, useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import {
-  initializeSDK,
-  identifyUser,
   addEvent,
-  viewContentEvent,
   addToCartEvent,
+  identifyUser,
+  initializeSDK,
   initiateCheckoutEvent,
   purchaseEvent,
   registerEvent,
+  viewContentEvent,
 } from '../RNConvertedInSdkModule';
 
 interface RNConvertInSDKProps {

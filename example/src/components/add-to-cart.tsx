@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import Button from './button';
-import { useConvertedIn } from 'react-native-converted-in-sdk';
+import { useConvertedInSdk } from 'react-native-converted-in-sdk';
 
 const AddToCart: React.FC = () => {
-  const { addToCartEvent } = useConvertedIn();
+  const { addToCartEvent } = useConvertedInSdk();
 
   const handleAddToCart = () => {
     const currency = 'USD';
