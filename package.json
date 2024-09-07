@@ -1,6 +1,6 @@
 {
   "name": "react-native-converted-in-sdk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Converted In SDK for React Native",
   "source": "src/index.ts",
   "main": "lib/commonjs/index.js",
