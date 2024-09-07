@@ -29,11 +29,11 @@ const checkInitialization = () => {
 
 export async function initializeSDK(config: InitSDKOptions): Promise<void> {
   if (isInitialized) {
-    console.log('SDK already initialized');
+    console.log('🔄 SDK already initialized');
     return;
   }
   await NativeModules.ConvertedInSDKModule.initializeSDK(config);
-  console.log('SDK Initialized Successfully');
+  console.info('✅ ConvertedInSDK Initialized Successfully');
   isInitialized = true;
 }
 
@@ -48,6 +48,7 @@ export function identifyUser(
     countryCode,
     phoneNumber
   );
+  console.info('✅ User Identified Successfully');
 }
 
 export function addEvent(
@@ -63,6 +64,7 @@ export function addEvent(
     total,
     products
   );
+  console.info('✅ Event Added Successfully');
 }
 
 export const viewContentEvent = (
@@ -72,6 +74,7 @@ export const viewContentEvent = (
 ) => {
   checkInitialization();
   ConvertedInSDKModule.viewContentEvent(currency, total, products);
+  console.info('✅ View Content Event Added Successfully');
 };
 
 export const addToCartEvent = (
@@ -81,6 +84,7 @@ export const addToCartEvent = (
 ) => {
   checkInitialization();
   ConvertedInSDKModule.addToCartEvent(currency, total, products);
+  console.info('✅ Add To Cart Event Added Successfully');
 };
 
 export const initiateCheckoutEvent = (
@@ -90,6 +94,7 @@ export const initiateCheckoutEvent = (
 ) => {
   checkInitialization();
   ConvertedInSDKModule.initiateCheckoutEvent(currency, total, products);
+  console.info('✅ Initiate Checkout Event Added Successfully');
 };
 
 export const purchaseEvent = (
@@ -99,9 +104,11 @@ export const purchaseEvent = (
 ) => {
   checkInitialization();
   ConvertedInSDKModule.purchaseEvent(currency, total, products);
+  console.info('✅ Purchase Event Added Successfully');
 };
 
 export const registerEvent = () => {
   checkInitialization();
   ConvertedInSDKModule.registerEvent();
+  console.info('✅ Register Event Added Successfully');
 };
