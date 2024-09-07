@@ -4,9 +4,9 @@ A React Native SDK for ConvertedIn, providing easy integration of ConvertedIn's 
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![npm version](https://badge.fury.io/js/react-native-converted-in-sdk.svg)](https://badge.fury.io/js/react-native-converted-in-sdk) [![Downloads](https://img.shields.io/npm/dm/react-native-converted-in-sdk.svg)](https://www.npmjs.com/package/react-native-converted-in-sdk)
 
-## Demo events and the log info
+## 📹 Demo
 
-![Demo events and the log info](https://github.com/user-attachments/assets/5518d99e-86bb-46a5-a5bc-bbc0e199b2a5)
+![Watch the Demo](https://github.com/user-attachments/assets/15ff28dd-5039-4332-8e4a-5617bd4b4c66)
 
 ## 📦 Installation
 
