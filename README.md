@@ -6,7 +6,14 @@ A React Native SDK for ConvertedIn, providing easy integration of ConvertedIn's 
 
 ## 📹 Demo
 
-![Watch the Demo](https://github.com/user-attachments/assets/15ff28dd-5039-4332-8e4a-5617bd4b4c66)
+| iOS                                                                                          | Android                                                                                          |
+| -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| ![iOS Demo](https://github.com/user-attachments/assets/15ff28dd-5039-4332-8e4a-5617bd4b4c66) | ![Android Demo](https://github.com/user-attachments/assets/0ac36fc9-729b-4b17-812b-803b4d2bdfbd) |
+
+## 🛠️ Requirements
+
+- iOS 13.0 or higher
+- Android 5.0 (API level 21) or higher
 
 ## 📦 Installation
 
