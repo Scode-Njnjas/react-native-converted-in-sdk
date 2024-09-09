@@ -95,6 +95,6 @@ dependencies {
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  implementation 'com.github.Scode-Njnjas:android-pixel-sdk:v1.0.1'
+  implementation "com.github.Scode-Njnjas:android-pixel-sdk:+"
 }
 
